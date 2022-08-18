@@ -19,7 +19,7 @@ function console_log($output, $with_script_tags = true) {
     echo $js_code;
 }
 
-if (isset($_POST['submit'])) {
+if (isset($_POST['signup'])) {
 	$username = $_POST['username'];
 	$email = $_POST['email'];
 	$password = md5($_POST['password']);
@@ -52,7 +52,7 @@ if (isset($_POST['submit'])) {
 }
 
 
-if (isset($_POST['submit'])) {
+if (isset($_POST['login'])) {
 	$email = $_POST['email'];
 	$password = md5($_POST['password']);
 
@@ -105,17 +105,17 @@ if (isset($_POST['submit'])) {
                         <i class="uil uil-eye-slash showHidePw"></i>
                     </div>
 
-                    <div class="checkbox-text">
+                    <!--<div class="checkbox-text">
                         <div class="checkbox-content">
                             <input type="checkbox" id="logCheck">
                             <label for="logCheck" class="text">Remember me</label>
                         </div>
                         
                         <a href="#" class="text">Forgot password?</a>
-                    </div>
+                    </div>-->
 
                     <div class="input-field button">
-                        <input name="submit" type="submit" value="Login">
+                        <input name="login" type="submit" value="Login">
                     </div>
                 </form>
 
@@ -149,15 +149,15 @@ if (isset($_POST['submit'])) {
                         <i class="uil uil-eye-slash showHidePw"></i>
                     </div>
 
-                    <div class="checkbox-text">
+                    <!--<div class="checkbox-text">
                         <div class="checkbox-content">
                             <input type="checkbox" id="termCon">
                             <label for="termCon" class="text">I accepted all terms and conditions</label>
                         </div>
-                    </div>
+                    </div>-->
 
                     <div class="input-field button">
-                        <input name="submit" type="submit" value="Signup">      <!-- type="button" -->
+                        <input name="signup" type="submit" value="Signup">      <!-- type="button" -->
                     </div>
                 </form>
 
