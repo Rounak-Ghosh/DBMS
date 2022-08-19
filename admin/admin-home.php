@@ -8,7 +8,7 @@ if (!isset($_SESSION['username'])) {
 
 if (isset($_POST['logout'])) {
     session_destroy();
-	header("Location: index.php");
+	header("Location: ../index.php");
 }
 
 ?>
@@ -21,16 +21,16 @@ if (isset($_POST['logout'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- ===== CSS ===== -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
 
-    <title>Welcome</title>
+    <title>Admin Portal</title>
 </head>
 
 <body>
     <div class="container">
         <div class="forms">
             <div class="form login">
-                <div class="title"><?php echo "Welcome " . $_SESSION['username']; ?></div>
+                <div class="title"><?php echo "Welcome " . $_SESSION['username'] . " to Admin Portal"; ?></div>
 
                 <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
                     
