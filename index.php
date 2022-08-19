@@ -14,7 +14,7 @@
     <!-- ===== CSS ===== -->
     <link rel="stylesheet" href="style.css">
          
-    <title>Starting</title>
+    <title>Sign in</title>
 </head>
 <body>
     
