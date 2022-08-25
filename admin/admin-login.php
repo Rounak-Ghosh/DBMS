@@ -11,8 +11,7 @@ if (isset($_SESSION['username'])) {
 }
 
 function console_log($output, $with_script_tags = true) {
-    $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . 
-');';
+    $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . ');';
     if ($with_script_tags) {
         $js_code = '<script>' . $js_code . '</script>';
     }
@@ -52,7 +51,7 @@ if (isset($_POST['signup'])) {
             echo "<script>alert('Password Not Matched.')</script>";
         }
     } else {
-        echo "<script>alert('Admin access denied.')</script>";
+        echo "<script>alert('Unauthorized personnel. Admin access denied.')</script>";
     }
 }
 
@@ -60,16 +59,20 @@ if (isset($_POST['signup'])) {
 if (isset($_POST['login'])) {
 	$email = $_POST['email'];
 	$password = md5($_POST['password']);
-
+    
 	$sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
 	$result = mysqli_query($conn, $sql);
-	if ($result->num_rows > 0) {
-		$row = mysqli_fetch_assoc($result);
-		$_SESSION['username'] = $row['username'];
-		header("Location: admin-home.php");
-	} else {
-		echo "<script>alert('Woops! Email or Password is Wrong.')</script>";
-	}
+    if ($result->num_rows > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $_SESSION['username'] = $row['username'];
+        if ($row['usertype'] == "admin") {
+            header("Location: admin-home.php");
+        } else {
+            echo "<script>alert('Unauthorized personnel. Admin access denied.')</script>";    
+        }
+    } else {
+        echo "<script>alert('Woops! Email or Password is Wrong.')</script>";
+    }
 }
 
 ?>
@@ -93,6 +96,9 @@ if (isset($_POST['login'])) {
     <title>Admin Login</title>
 </head>
 <body>
+    <div class="preloader" id="preloader">
+        <div id="loader"></div>
+    </div>
     <div class="container">
         <div class="forms">
             
@@ -199,6 +205,13 @@ if (isset($_POST['login'])) {
     login.addEventListener("click", ( )=>{
         container.classList.remove("active");
     });
+
+    window.onload = function() {
+        var preloader = document.getElementsByClassName('preloader')[0];
+        setTimeout(function() {
+            preloader.style.display = 'none';
+        }, 1000);
+    };
     </script>
 </body>
 </html>

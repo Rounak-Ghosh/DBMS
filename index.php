@@ -17,12 +17,14 @@
     <title>Sign in</title>
 </head>
 <body>
-    
+    <div class="preloader" id="preloader">
+        <div id="loader"></div>
+    </div>
     <div class="container">
         <div class="forms">
             <div class="form start">
                 <span class="title">Sign in: </span>
-                <form action="student/student-login.php">
+                <form action="students/student-login.php">
                     <div class="input-field button">
                         <input name="admin" type="submit" value="as Student">
                     </div>
@@ -35,6 +37,14 @@
             </div>
         </div>
     </div>
+    <script>
+        window.onload = function() {
+            var preloader = document.getElementsByClassName('preloader')[0];
+            setTimeout(function() {
+                preloader.style.display = 'none';
+            }, 1000);
+        };
+    </script>
 </body>
 </html>
 
